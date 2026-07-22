@@ -461,6 +461,10 @@ button { font-family: inherit; cursor: pointer; }
 }
 .gallery-play-btn .icon { margin-left: 3px; }
 
+/* When a hero-media panel doubles as a video trigger, defer to .hero-img's own
+   rounding/shadow instead of doubling up with .gallery-video-item's card styling. */
+.hero-media.gallery-video-item { border-radius: 0; box-shadow: none; overflow: visible; margin-bottom: 0; }
+
 /* =========================================================
    Media Lightbox
    ========================================================= */

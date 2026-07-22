@@ -48,6 +48,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
 <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
 <symbol id="icon-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+<symbol id="icon-play" viewBox="0 0 24 24"><path d="M7 4.5v15l14-7.5-14-7.5z" fill="currentColor" stroke="none"/></symbol>
 <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
 <symbol id="icon-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
 <symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v7h3v-7H16l.5-3h-3V9.8c0-.5.3-.8.8-.8z" fill="currentColor" stroke="none"/></symbol>
@@ -136,8 +137,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
       </div>
     </div>
-    <div class="hero-media">
-      <img src="assets/images/hero/about-hero.jpg" alt="Kendall, owner of WashCrafters Exterior Home Solutions" class="hero-img">
+    <div class="hero-media gallery-video-item" data-lightbox-trigger data-video-src="assets/videos/about-us.mp4" tabindex="0" role="button" aria-label="Play video: About WashCrafters">
+      <img src="assets/images/hero/about-video-poster.jpg" alt="Kendall, owner of WashCrafters Exterior Home Solutions, introducing the business" class="hero-img">
+      <span class="gallery-play-btn" aria-hidden="true"><svg class="icon icon-lg" aria-hidden="true"><use href="#icon-play"/></svg></span>
     </div>
   </div>
 </section>
@@ -409,6 +411,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div id="b128a33f-4dfd-41b5-bc7f-ec72c5cb6091-1709809"></div>
     </div>
+  </div>
+</div>
+
+<!-- ============ MEDIA LIGHTBOX ============ -->
+<div class="media-lightbox" id="media-lightbox" aria-hidden="true">
+  <div class="media-lightbox-backdrop" data-lightbox-close></div>
+  <div class="media-lightbox-panel" role="dialog" aria-modal="true" aria-label="Video player" tabindex="-1">
+    <button type="button" class="media-lightbox-close" data-lightbox-close aria-label="Close video">
+      <svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg>
+    </button>
+    <div class="media-lightbox-video-wrap" id="media-lightbox-video-wrap"></div>
   </div>
 </div>
 

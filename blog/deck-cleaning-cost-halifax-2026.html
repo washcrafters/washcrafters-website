@@ -93,6 +93,18 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1353663503615387&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<!-- Lead Event on Quote Form Scrolltop -->
+<script>
+var leadFired = false;
+window.addEventListener('message', function(e) {
+  if (e.data === 'scrolltop' && !leadFired) {
+    leadFired = true;
+    fbq('track', 'Lead');
+    console.log('Lead event fired');
+  }
+});
+</script>
+<!-- End Lead Event -->
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

@@ -579,6 +579,13 @@ button { font-family: inherit; cursor: pointer; }
 .included-list li { display: flex; gap: 0.6rem; align-items: flex-start; font-weight: 600; color: var(--color-primary); }
 
 .pricing-grid-single { grid-template-columns: minmax(0, 26rem); justify-content: center; }
+.pricing-grid-double { grid-template-columns: repeat(2, minmax(0, 22rem)); justify-content: center; }
+.pricing-tier-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: var(--space-3); }
+.pricing-tier { display: flex; justify-content: space-between; gap: 0.75rem; font-size: 0.92rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+.pricing-card-highlight .pricing-tier { border-bottom-color: rgba(255,255,255,0.18); }
+.pricing-tier-label { font-weight: 600; }
+.pricing-tier-value { color: var(--color-text-muted); text-align: right; }
+.pricing-card-highlight .pricing-tier-value { color: rgba(255,255,255,0.85); }
 
 .faq-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .faq-item {

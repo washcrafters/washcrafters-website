@@ -109,7 +109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="../index.html#reviews">Reviews</a>
       <a href="../index.html#service-area">Service Area</a>
       <a href="../index.html#contact">Contact</a>
-      <a href="../index.html#contact" class="btn btn-cta mobile-nav-cta">Get a Free Quote</a>
+      <button type="button" class="btn btn-cta mobile-nav-cta" data-quote-trigger data-quote-source="mobile-menu">Get a Free Quote</button>
     </nav>
 
     <div class="header-actions">
@@ -117,7 +117,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg>
         <span>(902) 333-9929</span>
       </a>
-      <a href="../index.html#contact" class="btn btn-cta"><span class="btn-text-full">Get a Free Quote</span><span class="btn-text-short">Quote</span></a>
+      <button type="button" class="btn btn-cta" data-quote-trigger data-quote-source="quote-cta"><span class="btn-text-full">Get a Free Quote</span><span class="btn-text-short">Quote</span></button>
       <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
         <svg class="icon" aria-hidden="true"><use href="#icon-menu"/></svg>
       </button>
@@ -150,7 +150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="hero-cta">
-        <a href="../index.html#contact" class="btn btn-cta btn-lg">Get a Free Quote</a>
+        <button type="button" class="btn btn-cta btn-lg" data-quote-trigger data-quote-source="quote-cta">Get a Free Quote</button>
         <a href="tel:19023339929" class="btn btn-outline btn-lg">
           <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg>
           Call (902) 333-9929
@@ -239,7 +239,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li><svg class="icon icon-accent" aria-hidden="true"><use href="#icon-check"/></svg> Wood fence: $1.75&ndash;$4.50 / linear ft / side</li>
           <li><svg class="icon icon-accent" aria-hidden="true"><use href="#icon-check"/></svg> Vinyl fence: $1.00&ndash;$3.25 / linear ft / side</li>
         </ul>
-        <a href="../index.html#contact" class="btn btn-cta">Get My Quote</a>
+        <button type="button" class="btn btn-cta" data-quote-trigger data-quote-source="pricing">Get My Quote</button>
       </div>
     </div>
   </div>
@@ -276,7 +276,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2>Ready for deck cleaning in Timberlea?</h2>
       <p>Get a free, no-pressure quote and see why Halifax homeowners give us 5.0 stars.</p>
     </div>
-    <a href="../index.html#contact" class="btn btn-cta btn-lg">Get a Free Quote</a>
+    <button type="button" class="btn btn-cta btn-lg" data-quote-trigger data-quote-source="quote-cta">Get a Free Quote</button>
   </div>
 </section>
 
@@ -381,6 +381,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p>Fully Insured &middot; Locally Owned &middot; Bedford, NS</p>
   </div>
 </footer>
+
+<!-- ============ QUOTE MODAL ============ -->
+<div class="quote-modal" id="quote-modal" aria-hidden="true">
+  <div class="quote-modal-backdrop" data-modal-close></div>
+  <div class="quote-modal-panel" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title" tabindex="-1">
+    <button type="button" class="quote-modal-close" data-modal-close aria-label="Close quote form">
+      <svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg>
+    </button>
+    <h3 id="quote-modal-title">Request Your Free Quote</h3>
+    <p class="quote-modal-sub">Fill out the form below and we'll get back to you within 1 business day.</p>
+    <div class="quote-modal-body">
+      <div class="quote-modal-loading" id="quote-modal-loading">
+        <span class="spinner" aria-hidden="true"></span>
+        <p>Loading quote form&hellip;</p>
+      </div>
+      <div id="b128a33f-4dfd-41b5-bc7f-ec72c5cb6091-1709809"></div>
+    </div>
+  </div>
+</div>
 
 <script src="../js/main.js"></script>
 </body>

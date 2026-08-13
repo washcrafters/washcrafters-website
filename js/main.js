@@ -67,7 +67,8 @@
       before: "assets/images/before-after/graffiti-before.jpg",
       after: "assets/images/before-after/graffiti-after.jpg",
       beforeAlt: "Exterior wall with graffiti before removal",
-      afterAlt: "Clean exterior wall after graffiti removal"
+      afterAlt: "Clean exterior wall after graffiti removal",
+      position: "50% 74%"
     }
   };
 
@@ -95,8 +96,10 @@
     if (!data || !beforeImg || !afterImg) return;
     beforeImg.src = data.before;
     beforeImg.alt = data.beforeAlt;
+    beforeImg.style.objectPosition = data.position || "";
     afterImg.src = data.after;
     afterImg.alt = data.afterAlt;
+    afterImg.style.objectPosition = data.position || "";
     setSliderPosition(50);
   }
 

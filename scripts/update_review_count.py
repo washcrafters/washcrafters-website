@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Fetch WashCrafters' current Google rating + review count via the Places API
-(New) Text Search endpoint, then update every page that displays it.
+(New) Place Details endpoint, then update every page that displays it.
 
 Requires the GOOGLE_PLACES_API_KEY environment variable (a Places API key,
 restricted to the Places API, stored as a GitHub Actions secret).
@@ -17,11 +17,21 @@ import urllib.request
 from pathlib import Path
 
 API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
-QUERY = "WashCrafters Exterior Home Solutions Inc, Bedford, Nova Scotia"
-# Both of these must check out before any data from a search result is
-# trusted. Text Search is fuzzy and can return an unrelated competitor as
-# the top (or only) hit -- an earlier version of this script trusted that
-# blindly and put a different business's review count live on the site.
+
+# Pinned directly to WashCrafters Exterior Home Solutions Inc. Verified by
+# resolving https://www.google.com/maps?cid=521348634915767400 (the CID from
+# the business's own "Read Reviews on Google" link) and confirming this
+# place ID's name/phone/website all match before using it.
+#
+# An earlier version of this script searched by name instead (Places Text
+# Search), which is fuzzy -- it silently matched an unrelated competitor
+# once (put their review count live on the site) and later failed to find
+# WashCrafters in the results at all. A pinned place ID has neither problem.
+#
+# Per Google's own docs, place IDs can occasionally be reassigned, so the
+# name/phone check below stays in place as a guard rail even though the ID
+# is fixed -- if it ever stops matching, refresh the ID the same way.
+PLACE_ID = "ChIJ6RkQfCLzTGMRaARKPNIzPAc"
 EXPECTED_NAME = "washcrafters exterior home solutions"
 EXPECTED_PHONE_DIGITS = "9023339929"  # (902) 333-9929
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -32,51 +42,32 @@ def _digits_only(s):
 
 
 def fetch_rating_and_count():
-    url = "https://places.googleapis.com/v1/places:searchText"
-    body = json.dumps({"textQuery": QUERY}).encode("utf-8")
-    req = urllib.request.Request(url, data=body, method="POST")
-    req.add_header("Content-Type", "application/json")
+    url = f"https://places.googleapis.com/v1/places/{PLACE_ID}"
+    req = urllib.request.Request(url, method="GET")
     req.add_header("X-Goog-Api-Key", API_KEY)
     req.add_header(
         "X-Goog-FieldMask",
-        "places.id,places.displayName,places.rating,places.userRatingCount,"
-        "places.formattedAddress,places.nationalPhoneNumber,places.internationalPhoneNumber",
+        "id,displayName,rating,userRatingCount,nationalPhoneNumber,internationalPhoneNumber",
     )
     try:
         with urllib.request.urlopen(req, timeout=20) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
+            place = json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
         raise RuntimeError(f"Places API HTTP {e.code}: {e.read().decode('utf-8', 'replace')}") from e
 
-    places = data.get("places", [])
-    if not places:
-        raise RuntimeError(f"No places found for query: {QUERY!r}")
-
-    # Require BOTH the business name and phone number to match. Fail loudly
-    # (no files touched, non-zero exit) rather than guess if that's not
-    # exactly one result -- a wrong silent guess is worse than no update.
-    matches = []
-    for p in places:
-        name = p.get("displayName", {}).get("text", "")
-        phone = p.get("nationalPhoneNumber") or p.get("internationalPhoneNumber") or ""
-        if EXPECTED_NAME in name.lower() and EXPECTED_PHONE_DIGITS in _digits_only(phone):
-            matches.append(p)
-
-    if len(matches) != 1:
-        candidates = "\n".join(
-            f"  - name={p.get('displayName', {}).get('text')!r} "
-            f"phone={p.get('nationalPhoneNumber')!r} id={p.get('id')!r}"
-            for p in places
-        )
+    # Guard rail: even with a pinned ID, don't trust the response unless it
+    # still looks like WashCrafters (name + phone). Fail loudly rather than
+    # silently update with data from an unexpected place.
+    name = place.get("displayName", {}).get("text", "")
+    phone = place.get("nationalPhoneNumber") or place.get("internationalPhoneNumber") or ""
+    if EXPECTED_NAME not in name.lower() or EXPECTED_PHONE_DIGITS not in _digits_only(phone):
         raise RuntimeError(
-            f"Could not confidently identify WashCrafters among {len(places)} result(s) "
-            f"for query {QUERY!r} (need exactly 1 name+phone match, got {len(matches)}).\n"
-            f"Candidates:\n{candidates}"
+            f"Place {PLACE_ID} no longer looks like WashCrafters "
+            f"(name={name!r}, phone={phone!r}). The place ID may need refreshing."
         )
 
-    place = matches[0]
     if "rating" not in place or "userRatingCount" not in place:
-        raise RuntimeError(f"Matched place is missing rating/userRatingCount: {place!r}")
+        raise RuntimeError(f"Place result missing rating/userRatingCount: {place!r}")
     return place["rating"], place["userRatingCount"]
 
 

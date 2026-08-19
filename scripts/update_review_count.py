@@ -18,7 +18,17 @@ from pathlib import Path
 
 API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY")
 QUERY = "WashCrafters Exterior Home Solutions Inc, Bedford, Nova Scotia"
+# Both of these must check out before any data from a search result is
+# trusted. Text Search is fuzzy and can return an unrelated competitor as
+# the top (or only) hit -- an earlier version of this script trusted that
+# blindly and put a different business's review count live on the site.
+EXPECTED_NAME = "washcrafters exterior home solutions"
+EXPECTED_PHONE_DIGITS = "9023339929"  # (902) 333-9929
 REPO_ROOT = Path(__file__).resolve().parent.parent
+
+
+def _digits_only(s):
+    return re.sub(r"\D", "", s or "")
 
 
 def fetch_rating_and_count():
@@ -29,7 +39,8 @@ def fetch_rating_and_count():
     req.add_header("X-Goog-Api-Key", API_KEY)
     req.add_header(
         "X-Goog-FieldMask",
-        "places.displayName,places.rating,places.userRatingCount,places.formattedAddress",
+        "places.id,places.displayName,places.rating,places.userRatingCount,"
+        "places.formattedAddress,places.nationalPhoneNumber,places.internationalPhoneNumber",
     )
     try:
         with urllib.request.urlopen(req, timeout=20) as resp:
@@ -41,13 +52,31 @@ def fetch_rating_and_count():
     if not places:
         raise RuntimeError(f"No places found for query: {QUERY!r}")
 
-    # Defensive: prefer the result whose name actually contains "washcrafters"
-    place = next(
-        (p for p in places if "washcrafters" in p.get("displayName", {}).get("text", "").lower()),
-        places[0],
-    )
+    # Require BOTH the business name and phone number to match. Fail loudly
+    # (no files touched, non-zero exit) rather than guess if that's not
+    # exactly one result -- a wrong silent guess is worse than no update.
+    matches = []
+    for p in places:
+        name = p.get("displayName", {}).get("text", "")
+        phone = p.get("nationalPhoneNumber") or p.get("internationalPhoneNumber") or ""
+        if EXPECTED_NAME in name.lower() and EXPECTED_PHONE_DIGITS in _digits_only(phone):
+            matches.append(p)
+
+    if len(matches) != 1:
+        candidates = "\n".join(
+            f"  - name={p.get('displayName', {}).get('text')!r} "
+            f"phone={p.get('nationalPhoneNumber')!r} id={p.get('id')!r}"
+            for p in places
+        )
+        raise RuntimeError(
+            f"Could not confidently identify WashCrafters among {len(places)} result(s) "
+            f"for query {QUERY!r} (need exactly 1 name+phone match, got {len(matches)}).\n"
+            f"Candidates:\n{candidates}"
+        )
+
+    place = matches[0]
     if "rating" not in place or "userRatingCount" not in place:
-        raise RuntimeError(f"Place result missing rating/userRatingCount: {place!r}")
+        raise RuntimeError(f"Matched place is missing rating/userRatingCount: {place!r}")
     return place["rating"], place["userRatingCount"]
 
 

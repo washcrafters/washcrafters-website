@@ -132,10 +132,10 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom: 1px solid var(--color-border);
   height: var(--header-h);
 }
-.header-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; gap: var(--space-3); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; gap: var(--space-3); max-width: 1340px; }
 
-.logo { display: flex; align-items: center; }
-.logo-img { height: 48px; width: auto; display: block; }
+.logo { display: flex; align-items: center; flex-shrink: 0; }
+.logo-img { height: 48px; width: auto; display: block; flex-shrink: 0; }
 .logo-footer .logo-img { height: 52px; }
 
 .main-nav { display: flex; align-items: center; gap: 1.5rem; }
@@ -642,7 +642,7 @@ button { font-family: inherit; cursor: pointer; }
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1300px) {
   .main-nav { display: none; }
   .nav-toggle { display: flex; }
   .phone-pill span { display: none; }

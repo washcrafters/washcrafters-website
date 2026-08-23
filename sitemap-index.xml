@@ -12,4 +12,8 @@
     <loc>https://washcrafters.com/sitemap-locations.xml</loc>
     <lastmod>2026-07-18</lastmod>
   </sitemap>
+  <sitemap>
+    <loc>https://washcrafters.com/sitemap-blog.xml</loc>
+    <lastmod>2026-08-22</lastmod>
+  </sitemap>
 </sitemapindex>

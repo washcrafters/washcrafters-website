@@ -738,6 +738,8 @@ body.modal-open { overflow: hidden; }
 .contact-form-panel-cta .icon-lg { margin-bottom: var(--space-2); }
 .contact-form-panel-cta p { color: var(--color-text-muted); margin-bottom: var(--space-3); }
 
+.inline-quote-body { position: relative; min-height: 220px; }
+
 @media (prefers-reduced-motion: reduce) {
   .quote-modal, .quote-modal-panel, .quote-modal-close { transition: none !important; }
   .spinner { animation-duration: 1.4s; }

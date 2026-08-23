@@ -653,11 +653,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="contact-form-panel contact-form-panel-cta">
-      <svg class="icon icon-lg icon-accent" aria-hidden="true"><use href="#icon-mail"/></svg>
+    <div class="contact-form-panel" id="inline-quote-form">
       <h3>Request Your Free Quote</h3>
       <p>Tell us a bit about your property and the services you're after &mdash; we'll get back to you within 1 business day, no pressure.</p>
-      <button type="button" class="btn btn-cta btn-lg" data-quote-trigger data-quote-source="contact-section">Open Quote Form</button>
+      <div class="inline-quote-body">
+        <div class="quote-modal-loading" id="inline-quote-loading">
+          <span class="spinner" aria-hidden="true"></span>
+          <p>Loading quote form&hellip;</p>
+        </div>
+        <div id="jobber-inline-contact"></div>
+      </div>
     </div>
   </div>
 </section>

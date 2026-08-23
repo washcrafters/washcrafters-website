@@ -302,6 +302,59 @@
     });
   }
 
+  /* ---------- Inline quote form (contact section) ---------- */
+  var inlineQuoteContainer = document.getElementById("inline-quote-form");
+  if (inlineQuoteContainer) {
+    var inlineJobberEl = document.getElementById("jobber-inline-contact");
+    var inlineLoadingEl = document.getElementById("inline-quote-loading");
+    var inlineLoaded = false;
+
+    window.dataLayer = window.dataLayer || [];
+
+    var loadInlineJobberForm = function () {
+      if (inlineLoaded) return;
+      inlineLoaded = true;
+
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css";
+      document.head.appendChild(link);
+
+      var script = document.createElement("script");
+      script.src = "https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js";
+      script.setAttribute("clienthub_id", "jobber-inline-contact");
+      script.setAttribute("form_url", "https://clienthub.getjobber.com/client_hubs/b128a33f-4dfd-41b5-bc7f-ec72c5cb6091/public/work_request/embedded_work_request_form?form_id=1709809");
+      document.body.appendChild(script);
+
+      var attempts = 0;
+      var poll = setInterval(function () {
+        attempts++;
+        var ready = inlineJobberEl && inlineJobberEl.children.length > 0;
+        if (ready || attempts > 40) {
+          if (inlineLoadingEl) inlineLoadingEl.style.display = "none";
+          clearInterval(poll);
+          if (ready) {
+            window.dataLayer.push({ event: "quote_form_loaded", quote_source: "contact-section-inline" });
+          }
+        }
+      }, 200);
+    };
+
+    if ("IntersectionObserver" in window) {
+      var inlineObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            loadInlineJobberForm();
+            inlineObserver.disconnect();
+          }
+        });
+      }, { rootMargin: "200px 0px" });
+      inlineObserver.observe(inlineQuoteContainer);
+    } else {
+      loadInlineJobberForm();
+    }
+  }
+
   /* ---------- Media lightbox (gallery videos) ---------- */
   var mediaLightbox = document.getElementById("media-lightbox");
   if (mediaLightbox) {

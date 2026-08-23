@@ -388,6 +388,13 @@ button { font-family: inherit; cursor: pointer; }
 .pricing-card ul { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: var(--space-4); flex: 1; }
 .pricing-card li { display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; }
 .pricing-card .btn { align-self: flex-start; }
+.pricing-guide-link {
+  display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;
+  color: var(--color-accent); margin-bottom: var(--space-3);
+}
+.pricing-guide-link .icon { width: 14px; height: 14px; }
+.pricing-card-highlight .pricing-guide-link { color: var(--color-white); text-decoration: underline; }
+.pricing-guide-link-block { text-align: center; margin-top: var(--space-3); font-size: 0.9rem; font-weight: 600; }
 
 /* =========================================================
    Reviews

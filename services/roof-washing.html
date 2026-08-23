@@ -44,6 +44,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://washcrafters.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://washcrafters.com/#services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Roof Cleaning"
+    }
+  ]
+}
+</script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -135,7 +160,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="../about.html">About</a>
       <a href="../index.html#pricing">Pricing</a>
       <a href="../index.html#reviews">Reviews</a>
-      <a href="../index.html#service-area">Service Area</a>
+      <div class="nav-dropdown">
+        <a href="../index.html#service-area" class="nav-dropdown-trigger">Service Areas <svg class="icon" aria-hidden="true"><use href="#icon-chevron"/></svg></a>
+        <div class="nav-dropdown-menu">
+          <a href="../locations/house-washing-halifax.html">Halifax</a>
+          <a href="../locations/house-washing-dartmouth.html">Dartmouth</a>
+          <a href="../locations/house-washing-bedford.html">Bedford</a>
+          <a href="../locations/house-washing-hammonds-plains.html">Hammonds Plains</a>
+          <a href="../locations/house-washing-lower-sackville.html">Lower Sackville</a>
+          <a href="../locations/house-washing-cole-harbour.html">Cole Harbour</a>
+          <a href="../locations/house-washing-eastern-passage.html">Eastern Passage</a>
+          <a href="../locations/house-washing-fall-river.html">Fall River</a>
+          <a href="../locations/house-washing-timberlea.html">Timberlea</a>
+        </div>
+      </div>
       <a href="../index.html#contact">Contact</a>
       <button type="button" class="btn btn-cta mobile-nav-cta" data-quote-trigger data-quote-source="mobile-menu">Get a Free Quote</button>
     </nav>

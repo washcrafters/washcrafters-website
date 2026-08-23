@@ -739,6 +739,8 @@ body.modal-open { overflow: hidden; }
 .contact-form-panel-cta p { color: var(--color-text-muted); margin-bottom: var(--space-3); }
 
 .inline-quote-body { position: relative; min-height: 220px; }
+.inline-quote-fallback { text-align: center; padding: var(--space-4) 0; color: var(--color-text-muted); }
+.inline-quote-fallback .btn { margin-top: var(--space-2); }
 
 @media (prefers-reduced-motion: reduce) {
   .quote-modal, .quote-modal-panel, .quote-modal-close { transition: none !important; }

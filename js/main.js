@@ -307,6 +307,7 @@
   if (inlineQuoteContainer) {
     var inlineJobberEl = document.getElementById("jobber-inline-contact");
     var inlineLoadingEl = document.getElementById("inline-quote-loading");
+    var inlineFallbackEl = document.getElementById("inline-quote-fallback");
     var inlineLoaded = false;
 
     window.dataLayer = window.dataLayer || [];
@@ -335,6 +336,13 @@
           clearInterval(poll);
           if (ready) {
             window.dataLayer.push({ event: "quote_form_loaded", quote_source: "contact-section-inline" });
+          } else {
+            /* Never leave visitors staring at a permanent spinner -- if the
+               embed doesn't mount in time (blocked script, slow network,
+               stale cache, Jobber outage, etc.), fall back to the phone
+               number plus the proven, independent modal-based form. */
+            if (inlineFallbackEl) inlineFallbackEl.hidden = false;
+            window.dataLayer.push({ event: "quote_form_load_failed", quote_source: "contact-section-inline" });
           }
         }
       }, 200);

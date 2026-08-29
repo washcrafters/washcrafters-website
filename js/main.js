@@ -370,14 +370,23 @@
     var lightboxVideoWrap = document.getElementById("media-lightbox-video-wrap");
     var lastFocusedLightboxEl = null;
 
-    function openMediaLightbox(videoSrc) {
+    function openMediaLightbox(opts) {
       lastFocusedLightboxEl = document.activeElement;
-      var video = document.createElement("video");
-      video.src = videoSrc;
-      video.controls = true;
-      video.autoplay = true;
-      video.playsInline = true;
-      lightboxVideoWrap.appendChild(video);
+
+      if (opts && opts.imgSrc) {
+        var img = document.createElement("img");
+        img.src = opts.imgSrc;
+        img.alt = opts.imgAlt || "";
+        lightboxVideoWrap.appendChild(img);
+        mediaLightbox.classList.add("is-image");
+      } else {
+        var video = document.createElement("video");
+        video.src = opts.videoSrc;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        lightboxVideoWrap.appendChild(video);
+      }
 
       mediaLightbox.classList.add("is-open");
       mediaLightbox.setAttribute("aria-hidden", "false");
@@ -387,6 +396,7 @@
 
     function closeMediaLightbox() {
       mediaLightbox.classList.remove("is-open");
+      mediaLightbox.classList.remove("is-image");
       mediaLightbox.setAttribute("aria-hidden", "true");
       document.body.classList.remove("modal-open");
       var video = lightboxVideoWrap.querySelector("video");
@@ -396,19 +406,37 @@
         video.load();
         video.remove();
       }
+      var img = lightboxVideoWrap.querySelector("img");
+      if (img) img.remove();
       if (lastFocusedLightboxEl && typeof lastFocusedLightboxEl.focus === "function") lastFocusedLightboxEl.focus();
+    }
+
+    function triggerMediaLightbox(item) {
+      var videoSrc = item.getAttribute("data-video-src");
+      if (videoSrc) {
+        openMediaLightbox({ videoSrc: videoSrc });
+        return;
+      }
+      var imgSrc = item.getAttribute("data-img-src");
+      if (imgSrc) {
+        openMediaLightbox({ imgSrc: imgSrc, imgAlt: item.getAttribute("data-img-alt") });
+      }
     }
 
     document.querySelectorAll("[data-lightbox-trigger]").forEach(function (item) {
       item.addEventListener("click", function () {
-        openMediaLightbox(item.getAttribute("data-video-src"));
+        triggerMediaLightbox(item);
       });
-      item.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openMediaLightbox(item.getAttribute("data-video-src"));
-        }
-      });
+      // Native <button> already fires click on Enter/Space; only non-button
+      // triggers (e.g. role="button" divs) need explicit keyboard handling.
+      if (item.tagName !== "BUTTON") {
+        item.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            triggerMediaLightbox(item);
+          }
+        });
+      }
     });
 
     mediaLightbox.querySelectorAll("[data-lightbox-close]").forEach(function (el) {

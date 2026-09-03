@@ -174,6 +174,34 @@ button { font-family: inherit; cursor: pointer; }
 .nav-dropdown:hover .nav-dropdown-trigger .icon,
 .nav-dropdown:focus-within .nav-dropdown-trigger .icon { transform: rotate(270deg); }
 
+/* Nested "Seasonal" submenu inside the Services dropdown */
+.nav-subdropdown { position: relative; }
+.nav-subdropdown-trigger {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.4rem;
+  width: 100%; padding: 0.6rem 0.8rem; border: none; background: none; text-align: left;
+  border-radius: 8px; font-family: var(--font-heading); font-weight: 600;
+  font-size: 0.88rem; color: var(--color-primary); white-space: nowrap; cursor: pointer;
+}
+.nav-subdropdown-trigger .icon { width: 13px; height: 13px; transition: transform 180ms var(--ease); }
+.nav-subdropdown:hover > .nav-subdropdown-trigger,
+.nav-subdropdown:focus-within > .nav-subdropdown-trigger { background: var(--color-primary-tint); color: var(--color-accent-dark); }
+.nav-subdropdown:hover > .nav-subdropdown-trigger .icon,
+.nav-subdropdown:focus-within > .nav-subdropdown-trigger .icon { transform: translateX(2px); }
+.nav-subdropdown-menu {
+  position: absolute; top: -0.5rem; left: 100%;
+  background: var(--color-white); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-lg); padding: 0.5rem; min-width: 230px;
+  display: flex; flex-direction: column; gap: 0.1rem;
+  opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(6px);
+  transition: opacity 160ms var(--ease), transform 160ms var(--ease), visibility 160ms;
+  z-index: 210;
+}
+.nav-subdropdown-menu::before { content: ""; position: absolute; top: 0; bottom: 0; left: -14px; width: 14px; }
+.nav-subdropdown:hover > .nav-subdropdown-menu,
+.nav-subdropdown:focus-within > .nav-subdropdown-menu {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0);
+}
+
 .header-actions { display: flex; align-items: center; gap: var(--space-2); }
 .phone-pill {
   display: flex; align-items: center; gap: 0.5rem;
@@ -705,6 +733,15 @@ button { font-family: inherit; cursor: pointer; }
     transform: none; box-shadow: none; border: none; background: var(--color-primary-tint);
     margin-top: 0.4rem; padding: 0.4rem; min-width: 0;
   }
+  .nav-subdropdown { display: flex; flex-direction: column; }
+  .nav-subdropdown-trigger { cursor: default; padding: 0.6rem 0.8rem 0.3rem; opacity: 0.75; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .nav-subdropdown-trigger .icon { display: none; }
+  .nav-subdropdown-menu {
+    position: static; opacity: 1; visibility: visible; pointer-events: auto;
+    transform: none; box-shadow: none; border: none; background: transparent;
+    padding: 0 0 0 0.5rem; min-width: 0;
+  }
+  .nav-subdropdown-menu::before { display: none; }
 }
 
 @media (max-width: 640px) {

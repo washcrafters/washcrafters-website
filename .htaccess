@@ -34,3 +34,12 @@
     Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 </IfModule>
+
+# Holiday lighting designer — deployed but still a work in progress.
+# Keep it out of search results until it's linked from the site.
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/holiday-designer/" HOLIDAY_DESIGNER_WIP
+</IfModule>
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow" env=HOLIDAY_DESIGNER_WIP
+</IfModule>

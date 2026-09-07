@@ -1150,20 +1150,6 @@ body.modal-open { overflow: hidden; }
 .addon-item h3 { font-size: 0.98rem; margin: 0 0 0.15rem; }
 .addon-item p { font-size: 0.88rem; color: var(--color-text-muted); margin: 0; }
 
-/* Designer tool call-to-action (closes the Add-Ons section) */
-.designer-cta {
-  margin-top: var(--space-4);
-  padding: var(--space-5);
-  text-align: center;
-  background: var(--color-primary-tint);
-  border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-lime);
-  border-radius: var(--radius-lg);
-}
-.designer-cta h3 { margin: 0 0 0.5rem; font-size: 1.3rem; }
-.designer-cta p { max-width: 40rem; margin: 0 auto var(--space-4); color: var(--color-text-muted); }
-.designer-cta .btn { margin: 0; }
-
 /* "How it works" numbered steps */
 .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); counter-reset: howstep; }
 .how-step { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-3); }

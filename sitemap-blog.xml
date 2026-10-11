@@ -2,9 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://washcrafters.com/blog/index.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://washcrafters.com/blog/remove-moss-from-roof-diy-vs-professional.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://washcrafters.com/blog/how-often-to-clean-gutters-halifax.html</loc>

@@ -625,6 +625,8 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
   font-size: 0.82rem; color: rgba(255,255,255,0.55);
 }
+.footer-bottom a { color: inherit; text-decoration: underline; margin-left: 0.5rem; }
+.footer-bottom a:hover { color: var(--color-white); }
 
 /* =========================================================
    Service pages

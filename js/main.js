@@ -462,4 +462,70 @@
       }
     });
   }
+
+  /* ---------- Twinkling string lights (holiday lighting page) ---------- */
+  var garlands = document.querySelectorAll(".light-garland");
+  if (garlands.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var TILE = 240; // width of the garland SVG tile in styles.css
+    var BULBS = [ // [x, y, colour] within one tile
+      [30, 28, "#e6b422"], [70, 34, "#d9534f"], [110, 29, "#4a9d5b"],
+      [150, 34, "#f4e6c0"], [190, 29, "#4aa5b8"], [230, 21, "#d9534f"]
+    ];
+    var rand = function (min, max) { return min + Math.random() * (max - min); };
+    // New random timing for one bulb. The dip (resting brightness) is fixed per
+    // bulb so each cycle starts and ends at the same value and never jumps.
+    var reroll = function (bulb) {
+      bulb.style.setProperty("--twinkle-dur", rand(2.8, 7).toFixed(2) + "s");
+      bulb.style.setProperty("--twinkle-peak", rand(0.85, 1).toFixed(2));
+      bulb.style.setProperty("--twinkle-bloom", rand(1.05, 1.18).toFixed(2));
+    };
+    var restart = function (bulb) {
+      bulb.classList.remove("is-lit");
+      void bulb.offsetWidth; // flush so the animation starts over
+      bulb.classList.add("is-lit");
+    };
+
+    var buildGarland = function (el) {
+      var width = el.clientWidth;
+      if (!width || el._twinkleWidth === width) return;
+      el._twinkleWidth = width;
+      el.textContent = "";
+      el.classList.add("is-twinkling");
+      var frag = document.createDocumentFragment();
+      for (var x0 = 0; x0 < width; x0 += TILE) {
+        BULBS.forEach(function (b) {
+          if (x0 + b[0] > width - 5) return;
+          var bulb = document.createElement("span");
+          bulb.className = "light-bulb";
+          bulb.style.left = (x0 + b[0]) + "px";
+          bulb.style.top = b[1] + "px";
+          bulb.style.setProperty("--bulb", b[2]);
+          bulb.style.setProperty("--twinkle-dip", rand(0.4, 0.65).toFixed(2));
+          bulb.style.setProperty("--twinkle-delay", (-rand(0, 7)).toFixed(2) + "s"); // stagger the first cycle
+          reroll(bulb);
+          bulb.classList.add("is-lit");
+          frag.appendChild(bulb);
+        });
+      }
+      el.appendChild(frag);
+    };
+
+    garlands.forEach(function (el) {
+      buildGarland(el);
+      el.addEventListener("animationiteration", function (e) {
+        if (e.animationName !== "bulb-twinkle") return;
+        // Cycle boundary: bulb is at its resting brightness, so restarting here is seamless
+        e.target.style.setProperty("--twinkle-delay", "0s");
+        reroll(e.target);
+        restart(e.target);
+      });
+      if ("ResizeObserver" in window) new ResizeObserver(function () { buildGarland(el); }).observe(el);
+      // Stop animating while the strand is off-screen
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          el.classList.toggle("is-paused", !entries[0].isIntersecting);
+        }).observe(el);
+      }
+    });
+  }
 })();

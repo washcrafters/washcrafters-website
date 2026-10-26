@@ -21,6 +21,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 ASSETS = {
     "js/main.js": REPO_ROOT / "js" / "main.js",
     "css/styles.css": REPO_ROOT / "css" / "styles.css",
+    "css/holiday-festive.css": REPO_ROOT / "css" / "holiday-festive.css",
 }
 
 
@@ -44,6 +45,7 @@ def main():
     patterns = [
         (re.compile(r'(src=")((?:\.\./)?js/main\.js)(?:\?v=[0-9a-f]+)?(")'), versions["js/main.js"]),
         (re.compile(r'(href=")((?:\.\./)?css/styles\.css)(?:\?v=[0-9a-f]+)?(")'), versions["css/styles.css"]),
+        (re.compile(r'(href=")((?:\.\./)?css/holiday-festive\.css)(?:\?v=[0-9a-f]+)?(")'), versions["css/holiday-festive.css"]),
     ]
 
     changed = []

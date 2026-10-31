@@ -56,7 +56,8 @@
 .theme-holiday .hero-holiday { position: relative; overflow: hidden; }
 .theme-holiday .hero-holiday-inner { position: relative; z-index: 2; }
 .theme-holiday .hero-holiday .light-garland { position: relative; z-index: 3; }
-.hero-holiday .eyebrow::before { content: ""; display: inline-block; width: 1.2em; height: 1.2em; margin-right: 0.5em; vertical-align: -0.28em;
+.hero-holiday .eyebrow::before,
+.xm-article-hero .eyebrow::before { content: ""; display: inline-block; width: 1.2em; height: 1.2em; margin-right: 0.5em; vertical-align: -0.28em;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpolygon points=%2224.00,4.00 29.29,17.72 43.97,18.51 32.56,27.78 36.34,41.99 24.00,34.00 11.66,41.99 15.44,27.78 4.03,18.51 18.71,17.72%22 fill=%22%23e6b422%22 stroke=%22%23c9921d%22 stroke-width=%221%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E") center / contain no-repeat; }
 
 /* ---------- section eyebrows ---------- */
@@ -138,3 +139,39 @@
   .xm-snow { display: none; }
   .xm-ornament, .xm-mistletoe { animation: none; }
 }
+
+/* =========================================================
+   Holiday blog posts: <main class="theme-holiday"> on a blog page
+   (same decorations as the service page, adapted to article layout)
+   ========================================================= */
+.theme-holiday .article-hero.xm-article-hero {
+  position: relative; overflow: hidden; padding-top: calc(var(--space-5) + 40px);
+  background: linear-gradient(170deg, #fbf3e3 0%, #f4ecdd 60%, #ffffff 100%);
+}
+.xm-article-hero .light-garland { position: absolute; top: 0; left: 0; right: 0; z-index: 3; }
+.xm-article-hero .container { position: relative; z-index: 2; }
+.xm-article-hero .eyebrow { color: #b07a1e; }
+.xm-article-hero + .xm-candy-stripe { margin-bottom: var(--space-4); }
+@media (max-width: 1100px) { .xm-article-hero .xm-ornaments { display: none; } }
+
+.theme-holiday .callout-box { position: relative; background: #fbf3e6; border-left-color: var(--xm-red); }
+.theme-holiday .callout-box .icon { color: var(--xm-red); }
+.theme-holiday .callout-box::after { content: ""; position: absolute; top: 8px; right: 10px; width: 38px; height: 38px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d=%22M24 27C19 15 9 15 4 20C8 22 6 26 4 30C12 32 19 31 24 27Z%22 fill=%22%232f7a45%22 stroke=%22%231f5a34%22 stroke-width=%221%22/%3E%3Cpath d=%22M24 27C17 23 12 22 6 22%22 stroke=%22%231f5a34%22 stroke-width=%221%22 fill=%22none%22/%3E%3Cg transform=%22translate(48 0) scale(-1 1)%22%3E%3Cpath d=%22M24 27C19 15 9 15 4 20C8 22 6 26 4 30C12 32 19 31 24 27Z%22 fill=%22%234a9a5c%22 stroke=%22%231f5a34%22 stroke-width=%221%22/%3E%3Cpath d=%22M24 27C17 23 12 22 6 22%22 stroke=%22%231f5a34%22 stroke-width=%221%22 fill=%22none%22/%3E%3C/g%3E%3Ccircle cx=%2221%22 cy=%2230%22 r=%224%22 fill=%22%23c8202f%22/%3E%3Ccircle cx=%2228%22 cy=%2229%22 r=%224%22 fill=%22%23c8202f%22/%3E%3Ccircle cx=%2224.5%22 cy=%2235.5%22 r=%224%22 fill=%22%23c8202f%22/%3E%3Ccircle cx=%2219.8%22 cy=%2228.6%22 r=%221.1%22 fill=%22%23fff%22 opacity=%22.7%22/%3E%3Ccircle cx=%2226.8%22 cy=%2227.6%22 r=%221.1%22 fill=%22%23fff%22 opacity=%22.7%22/%3E%3Ccircle cx=%2223.3%22 cy=%2234.1%22 r=%221.1%22 fill=%22%23fff%22 opacity=%22.7%22/%3E%3C/svg%3E") center / contain no-repeat; opacity: 0.9; }
+
+.theme-holiday .compare-table-wrap::before { content: ""; display: block; height: 8px; background: var(--xm-stripe); }
+
+.xm-swag--inline { position: relative; top: auto; left: auto; right: auto; margin: var(--space-5) 0 var(--space-2); }
+
+.xm-step { display: flex; align-items: center; gap: 0.7rem; }
+.xm-num {
+  position: relative; flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: #fff;
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; line-height: 1;
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.55) 0 9%, transparent 10%), radial-gradient(circle at 40% 36%, var(--cl), var(--c) 55%, var(--cd));
+  box-shadow: inset -2px -3px 5px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.18);
+}
+.xm-num::before { content: ""; position: absolute; top: -5px; left: 50%; width: 14px; height: 7px; margin-left: -7px; background: var(--xm-gold); border-radius: 3px 3px 0 0; }
+
+.xm-photo { position: relative; margin: 0; }
+.xm-photo .xm-bow { top: 8px; left: 8px; transform: rotate(-9deg); }

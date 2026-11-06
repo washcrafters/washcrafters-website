@@ -22,6 +22,7 @@ ASSETS = {
     "js/main.js": REPO_ROOT / "js" / "main.js",
     "css/styles.css": REPO_ROOT / "css" / "styles.css",
     "css/holiday-festive.css": REPO_ROOT / "css" / "holiday-festive.css",
+    "css/winter-blog.css": REPO_ROOT / "css" / "winter-blog.css",
 }
 
 
@@ -46,6 +47,7 @@ def main():
         (re.compile(r'(src=")((?:\.\./)?js/main\.js)(?:\?v=[0-9a-f]+)?(")'), versions["js/main.js"]),
         (re.compile(r'(href=")((?:\.\./)?css/styles\.css)(?:\?v=[0-9a-f]+)?(")'), versions["css/styles.css"]),
         (re.compile(r'(href=")((?:\.\./)?css/holiday-festive\.css)(?:\?v=[0-9a-f]+)?(")'), versions["css/holiday-festive.css"]),
+        (re.compile(r'(href=")((?:\.\./)?css/winter-blog\.css)(?:\?v=[0-9a-f]+)?(")'), versions["css/winter-blog.css"]),
     ]
 
     changed = []

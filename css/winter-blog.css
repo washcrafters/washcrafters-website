@@ -1,0 +1,77 @@
+/* =========================================================
+   Winter blog posts: <main class="theme-winter"> on a blog page.
+   Snow itself (.xm-snow) comes from holiday-festive.css, which is
+   loaded alongside this file. Remove both <link>s to switch off.
+   ========================================================= */
+.theme-winter {
+  --color-primary: #17324d;
+  --color-primary-dark: #0f2338;
+  --color-primary-tint: #eaf3fa;
+  --color-cream: #f1f7fb;
+  --color-text: #1f2a36;
+  --color-text-muted: #566575;
+  --color-border: #d3e3ef;
+  --wn-ice: #6aaedb;
+  --wn-ice-dark: #2b6fa8;
+}
+
+/* ---------- hero: icicles + drift ---------- */
+.theme-winter .wn-hero {
+  position: relative; overflow: hidden; padding-top: calc(var(--space-5) + 44px); padding-bottom: calc(var(--space-4) + 30px);
+  background: linear-gradient(170deg, #e6f1f9 0%, #f3f8fc 60%, #ffffff 100%);
+}
+.wn-icicles { position: absolute; top: 0; left: 0; right: 0; height: 50px; z-index: 3; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='50' viewBox='0 0 180 50'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23eef7fc'/%3E%3Cstop offset='1' stop-color='%237db6df'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' width='180' height='8' fill='%23eef7fc'/%3E%3Cpath d='M0.1 6L11.9 6L7.2 35.3Q6.0 39.3 4.8 35.3Z' fill='url(%23g)'/%3E%3Cpath d='M3.1 8L5.5 29.3' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M19.7 6L33.3 6L27.7 35.2Q26.5 39.2 25.3 35.2Z' fill='url(%23g)'/%3E%3Cpath d='M23.1 8L26.0 29.3' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M45.6 6L53.8 6L50.9 28.1Q49.7 32.1 48.5 28.1Z' fill='url(%23g)'/%3E%3Cpath d='M47.7 8L49.2 24.3' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M61.6 6L73.5 6L68.7 39.4Q67.5 43.4 66.3 39.4Z' fill='url(%23g)'/%3E%3Cpath d='M64.6 8L67.0 32.2' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M78.7 6L89.5 6L85.3 22.4Q84.1 26.4 82.9 22.4Z' fill='url(%23g)'/%3E%3Cpath d='M81.4 8L83.6 20.3' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M96.5 6L107.9 6L103.4 16.3Q102.2 20.3 101.0 16.3Z' fill='url(%23g)'/%3E%3Cpath d='M99.3 8L101.7 16.0' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M114.1 6L123.8 6L120.1 39.8Q118.9 43.8 117.7 39.8Z' fill='url(%23g)'/%3E%3Cpath d='M116.5 8L118.4 32.5' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M132.7 6L141.7 6L138.4 36.7Q137.2 40.7 136.0 36.7Z' fill='url(%23g)'/%3E%3Cpath d='M135.0 8L136.7 30.3' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M145.1 6L156.8 6L152.2 19.3Q151.0 23.3 149.8 19.3Z' fill='url(%23g)'/%3E%3Cpath d='M148.1 8L150.5 18.1' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3Cpath d='M160.1 6L173.3 6L167.9 21.4Q166.7 25.4 165.5 21.4Z' fill='url(%23g)'/%3E%3Cpath d='M163.4 8L166.2 19.6' stroke='%23fff' stroke-width='1.3' opacity='.8' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x left top / 180px 50px; filter: drop-shadow(0 2px 2px rgba(23,50,77,0.12)); }
+.wn-hero .container { position: relative; z-index: 2; }
+.wn-hero .eyebrow { color: var(--wn-ice-dark); }
+.wn-hero .eyebrow::before { content: ""; display: inline-block; width: 1.25em; height: 1.25em; margin-right: 0.5em; vertical-align: -0.3em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg stroke=%22%236aaedb%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 fill=%22none%22%3E%3Cline x1=%2245.0%22 y1=%2224.0%22 x2=%223.0%22 y2=%2224.0%22/%3E%3Cline x1=%2234.5%22 y1=%2242.2%22 x2=%2213.5%22 y2=%225.8%22/%3E%3Cline x1=%2213.5%22 y1=%2242.2%22 x2=%2234.5%22 y2=%225.8%22/%3E%3Cline x1=%2237.0%22 y1=%2224.0%22 x2=%2242.4%22 y2=%2219.5%22/%3E%3Cline x1=%2237.0%22 y1=%2224.0%22 x2=%2242.4%22 y2=%2228.5%22/%3E%3Cline x1=%2230.5%22 y1=%2235.3%22 x2=%2237.1%22 y2=%2237.7%22/%3E%3Cline x1=%2230.5%22 y1=%2235.3%22 x2=%2229.3%22 y2=%2242.2%22/%3E%3Cline x1=%2217.5%22 y1=%2235.3%22 x2=%2218.7%22 y2=%2242.2%22/%3E%3Cline x1=%2217.5%22 y1=%2235.3%22 x2=%2210.9%22 y2=%2237.7%22/%3E%3Cline x1=%2211.0%22 y1=%2224.0%22 x2=%225.6%22 y2=%2228.5%22/%3E%3Cline x1=%2211.0%22 y1=%2224.0%22 x2=%225.6%22 y2=%2219.5%22/%3E%3Cline x1=%2217.5%22 y1=%2212.7%22 x2=%2210.9%22 y2=%2210.3%22/%3E%3Cline x1=%2217.5%22 y1=%2212.7%22 x2=%2218.7%22 y2=%225.8%22/%3E%3Cline x1=%2230.5%22 y1=%2212.7%22 x2=%2229.3%22 y2=%225.8%22/%3E%3Cline x1=%2230.5%22 y1=%2212.7%22 x2=%2237.1%22 y2=%2210.3%22/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; }
+.theme-winter .compare-table td:nth-child(2) { white-space: nowrap; }
+.wn-drift { height: 40px; margin-top: -38px; position: relative; z-index: 2; pointer-events: none; margin-bottom: var(--space-3);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='40' viewBox='0 0 480 40'%3E%3Cpath d='M0 22 C35.0 22 35.0 10 70 10 C110.0 10 110.0 20 150 20 C190.0 20 190.0 6 230 6 C265.0 6 265.0 18 300 18 C340.0 18 340.0 8 380 8 C410.0 8 410.0 16 440 16 C460.0 16 460.0 22 480 22 L480 40 L0 40Z' transform='translate(0 2)' fill='%23cfe1ee'/%3E%3Cpath d='M0 22 C35.0 22 35.0 10 70 10 C110.0 10 110.0 20 150 20 C190.0 20 190.0 6 230 6 C265.0 6 265.0 18 300 18 C340.0 18 340.0 8 380 8 C410.0 8 410.0 16 440 16 C460.0 16 460.0 22 480 22 L480 40 L0 40Z' fill='%23ffffff'/%3E%3C/svg%3E") repeat-x left bottom / 480px 40px; }
+
+/* ---------- snow lips (white snow hanging off the top of a band) ---------- */
+.wn-has-lip, .wn-cta { position: relative; }
+.wn-lip { position: absolute; top: -1px; left: 0; right: 0; height: 40px; z-index: 2; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='40' viewBox='0 0 480 40'%3E%3Cpath d='M0 18 C35.0 18 35.0 30 70 30 C110.0 30 110.0 20 150 20 C190.0 20 190.0 34 230 34 C265.0 34 265.0 22 300 22 C340.0 22 340.0 32 380 32 C410.0 32 410.0 24 440 24 C460.0 24 460.0 18 480 18 L480 0 L0 0Z' transform='translate(0 3)' fill='%23000' opacity='.12'/%3E%3Cpath d='M0 18 C35.0 18 35.0 30 70 30 C110.0 30 110.0 20 150 20 C190.0 20 190.0 34 230 34 C265.0 34 265.0 22 300 22 C340.0 22 340.0 32 380 32 C410.0 32 410.0 24 440 24 C460.0 24 460.0 18 480 18 L480 0 L0 0Z' fill='%23ffffff'/%3E%3C/svg%3E") repeat-x left top / 480px 40px; }
+.theme-winter .wn-has-lip { padding-top: calc(var(--space-6) + 24px); }
+.theme-winter .wn-cta { overflow: hidden; padding-top: calc(var(--space-5) + 36px); }
+.theme-winter .wn-cta .container { position: relative; z-index: 2; }
+
+/* ---------- eyebrows, callout, tables ---------- */
+.theme-winter .section-eyebrow::before { content: ""; display: inline-block; width: 1.25em; height: 1.25em; margin-right: 0.5em; vertical-align: -0.3em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg stroke=%22%236aaedb%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 fill=%22none%22%3E%3Cline x1=%2245.0%22 y1=%2224.0%22 x2=%223.0%22 y2=%2224.0%22/%3E%3Cline x1=%2234.5%22 y1=%2242.2%22 x2=%2213.5%22 y2=%225.8%22/%3E%3Cline x1=%2213.5%22 y1=%2242.2%22 x2=%2234.5%22 y2=%225.8%22/%3E%3Cline x1=%2237.0%22 y1=%2224.0%22 x2=%2242.4%22 y2=%2219.5%22/%3E%3Cline x1=%2237.0%22 y1=%2224.0%22 x2=%2242.4%22 y2=%2228.5%22/%3E%3Cline x1=%2230.5%22 y1=%2235.3%22 x2=%2237.1%22 y2=%2237.7%22/%3E%3Cline x1=%2230.5%22 y1=%2235.3%22 x2=%2229.3%22 y2=%2242.2%22/%3E%3Cline x1=%2217.5%22 y1=%2235.3%22 x2=%2218.7%22 y2=%2242.2%22/%3E%3Cline x1=%2217.5%22 y1=%2235.3%22 x2=%2210.9%22 y2=%2237.7%22/%3E%3Cline x1=%2211.0%22 y1=%2224.0%22 x2=%225.6%22 y2=%2228.5%22/%3E%3Cline x1=%2211.0%22 y1=%2224.0%22 x2=%225.6%22 y2=%2219.5%22/%3E%3Cline x1=%2217.5%22 y1=%2212.7%22 x2=%2210.9%22 y2=%2210.3%22/%3E%3Cline x1=%2217.5%22 y1=%2212.7%22 x2=%2218.7%22 y2=%225.8%22/%3E%3Cline x1=%2230.5%22 y1=%2212.7%22 x2=%2229.3%22 y2=%225.8%22/%3E%3Cline x1=%2230.5%22 y1=%2212.7%22 x2=%2237.1%22 y2=%2210.3%22/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; }
+.theme-winter .section-eyebrow { color: var(--wn-ice-dark); }
+.theme-winter .callout-box { position: relative; background: #eaf3fa; border-left-color: var(--wn-ice-dark); }
+.theme-winter .callout-box .icon { color: var(--wn-ice-dark); }
+.theme-winter .callout-box::after { content: ""; position: absolute; top: 8px; right: 10px; width: 34px; height: 34px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg stroke=%22%236aaedb%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 fill=%22none%22%3E%3Cline x1=%2245.0%22 y1=%2224.0%22 x2=%223.0%22 y2=%2224.0%22/%3E%3Cline x1=%2234.5%22 y1=%2242.2%22 x2=%2213.5%22 y2=%225.8%22/%3E%3Cline x1=%2213.5%22 y1=%2242.2%22 x2=%2234.5%22 y2=%225.8%22/%3E%3Cline x1=%2237.0%22 y1=%2224.0%22 x2=%2242.4%22 y2=%2219.5%22/%3E%3Cline x1=%2237.0%22 y1=%2224.0%22 x2=%2242.4%22 y2=%2228.5%22/%3E%3Cline x1=%2230.5%22 y1=%2235.3%22 x2=%2237.1%22 y2=%2237.7%22/%3E%3Cline x1=%2230.5%22 y1=%2235.3%22 x2=%2229.3%22 y2=%2242.2%22/%3E%3Cline x1=%2217.5%22 y1=%2235.3%22 x2=%2218.7%22 y2=%2242.2%22/%3E%3Cline x1=%2217.5%22 y1=%2235.3%22 x2=%2210.9%22 y2=%2237.7%22/%3E%3Cline x1=%2211.0%22 y1=%2224.0%22 x2=%225.6%22 y2=%2228.5%22/%3E%3Cline x1=%2211.0%22 y1=%2224.0%22 x2=%225.6%22 y2=%2219.5%22/%3E%3Cline x1=%2217.5%22 y1=%2212.7%22 x2=%2210.9%22 y2=%2210.3%22/%3E%3Cline x1=%2217.5%22 y1=%2212.7%22 x2=%2218.7%22 y2=%225.8%22/%3E%3Cline x1=%2230.5%22 y1=%2212.7%22 x2=%2229.3%22 y2=%225.8%22/%3E%3Cline x1=%2230.5%22 y1=%2212.7%22 x2=%2237.1%22 y2=%2210.3%22/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; opacity: 0.85; }
+.theme-winter .compare-table-wrap::before { content: ""; display: block; height: 8px;
+  background: repeating-linear-gradient(-45deg, #6aaedb 0 12px, #ffffff 12px 24px); }
+
+/* ---------- snowflake dividers ---------- */
+.wn-flakes { display: flex; align-items: center; justify-content: center; gap: 0.9rem; margin: var(--space-5) 0 var(--space-1); }
+.wn-flakes::before, .wn-flakes::after { content: ""; flex: 1; max-width: 120px; height: 2px; background: linear-gradient(90deg, transparent, #b9d9ee); }
+.wn-flakes::after { background: linear-gradient(90deg, #b9d9ee, transparent); }
+.wn-flake { width: 22px; height: 22px; color: #8fc3e6; }
+.wn-flake--lg { width: 34px; height: 34px; color: var(--wn-ice); }
+
+/* ---------- numbered steps as snowballs ---------- */
+.wn-step { display: flex; align-items: center; gap: 0.7rem; }
+.wn-num {
+  position: relative; flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: #fff;
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; line-height: 1;
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.55) 0 9%, transparent 10%), radial-gradient(circle at 40% 36%, var(--cl), var(--c) 58%, var(--cd));
+  box-shadow: inset -2px -3px 5px rgba(0,0,0,0.22), 0 2px 4px rgba(23,50,77,0.2);
+}
+
+/* ---------- snowman in the closing banner ---------- */
+.wn-snowman { position: absolute; left: 1.5%; bottom: 0; width: 56px; height: 70px; z-index: 1; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); pointer-events: none; }
+
+@media (max-width: 1200px) { .wn-snowman { display: none; } }
+@media (max-width: 860px) {
+  .wn-icicles { background-size: 140px 40px; height: 40px; }
+  .theme-winter .wn-hero { padding-top: calc(var(--space-5) + 32px); }
+  .theme-winter .wn-cta { padding-top: calc(var(--space-5) + 28px); }
+}
